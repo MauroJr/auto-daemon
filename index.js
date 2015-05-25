@@ -37,7 +37,7 @@ module.exports = function (opts, cb) {
 function daemon (opts, cb) {
     cb = once(cb || function () {});
     var args = [
-        path.join(__dirname, 'server.js'),
+        path.join(__dirname, 'run.js'),
         opts.rpcfile,
         '--sockfile', opts.sockfile,
         '--autoclose', Boolean(opts.autoclose),
