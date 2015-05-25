@@ -64,6 +64,7 @@ function connect (sockfile, methods, cb_) {
         });
         cb_(err, r);
     });
+    process.on('uncaughtException', onuncaught);
     var c = net.connect(sockfile);
     var client = RPC();
     var r = client.wrap(methods);
