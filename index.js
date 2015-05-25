@@ -19,9 +19,9 @@ module.exports = function (opts, cb) {
     
     function onstat (err) {
         if (err) connectAndDaemonize(cb);
-        else connect(opts.sockfile, opts.methods, function (err, r) {
+        else connect(opts.sockfile, opts.methods, function (err, r, c) {
             if (err) connectAndDaemonize(cb)
-            else cb(null, r)
+            else cb(null, r, c)
         })
     }
     function connectAndDaemonize (cb) {
@@ -58,19 +58,18 @@ function daemon (opts, cb) {
 }
 
 function connect (sockfile, methods, cb_) {
-    var cb = once(function (err, r) {
+    var cb = once(function (err, r, x) {
         process.nextTick(function () {
             process.removeListener('uncaughtException', onuncaught);
         });
-        cb_(err, r);
+        cb_(err, r, x);
     });
     process.on('uncaughtException', onuncaught);
     var c = net.connect(sockfile);
     var client = RPC();
     var r = client.wrap(methods);
-    r.disconnect = function () { c.destroy() };
     c.once('connect', function () {
-        cb(null, r);
+        cb(null, r, c);
     });
     c.once('error', cb);
     c.pipe(client).pipe(c);
