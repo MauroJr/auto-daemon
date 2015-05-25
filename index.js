@@ -28,7 +28,7 @@ module.exports = function (opts, cb) {
         fs.unlink(opts.sockfile, function () {
             daemon(opts, function (err) {
                 if (err) cb(err)
-                else connect(opts.sockfile, methods, cb)
+                else connect(opts.sockfile, opts.methods, cb)
             });
         });
     }
