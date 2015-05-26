@@ -93,6 +93,8 @@ the unix socket connection instance.
 * `opts.autoclose` - if `true`, close the server when the refcount drops to 0
 * `opts.debug` - when `true`, forward stdout and stderr in the daemonized
   process to the local stdout and stderr
+* `opts.args` - an array of extra arguments to pass as the third argument to the
+  interface. Must serialize as process arguments.
 
 The daemon refcount goes up by 1 for each connection and drops by 1 when a
 client disconnects. If the object returned by the rpc interface is an event
@@ -113,8 +115,18 @@ an rpc file.
 
 The rpc file should export a function that returns an object.
 
-The function will be called with the server and connection stream and should
-return the rpc methods for that connection.
+The function will be called like so:
+
+``` js
+var createIface = require(rpcfile);
+var iface = createIface(server, stream, args)
+```
+
+and should return the rpc methods in `iface` for that connection.
+
+* `server` is the daemon server instance
+* `stream` is the stream for the current session
+* `args` is an array of extra arguments provided by `opts.args`
 
 # license
 
