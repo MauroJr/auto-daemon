@@ -44,9 +44,13 @@ function daemon (opts, cb) {
         '--parentpid', process.pid
     ];
     var ps = spawn(process.execPath, args, {
-        stdio: 'ignore',
+        stdio: opts.debug ? undefined : 'ignore',
         detached: true
     });
+    if (opts.debug) {
+        ps.stdout.pipe(process.stdout);
+        ps.stderr.pipe(process.stderr);
+    }
     
     ps.once('exit', function (code) {
         cb(new Error('exited with code: ' + code));

@@ -91,6 +91,8 @@ the unix socket connection instance.
 * `opts.methods` - an array of methods to expose (required)
 * `opts.sockfile` - file to use as the unix socket (required)
 * `opts.autoclose` - if `true`, close the server when the refcount drops to 0
+* `opts.debug` - when `true`, forward stdout and stderr in the daemonized
+  process to the local stdout and stderr
 
 The daemon refcount goes up by 1 for each connection and drops by 1 when a
 client disconnects. If the object returned by the rpc interface is an event
