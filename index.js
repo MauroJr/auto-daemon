@@ -41,8 +41,11 @@ function daemon (opts, cb) {
         opts.rpcfile,
         '--sockfile', opts.sockfile,
         '--autoclose', Boolean(opts.autoclose),
-        '--parentpid', process.pid
+        '--parentpid', process.pid,
+        '--'
     ];
+    if (opts.args) args.push.apply(args, opts.args);
+    
     var ps = spawn(process.execPath, args, {
         stdio: opts.debug ? undefined : 'ignore',
         detached: true

@@ -4,9 +4,11 @@ var RPC = require('rpc-stream');
 module.exports = function (createIface, opts) {
     if (!opts) opts = {};
     var connected = 0;
+    var args = opts._ && opts._.slice(1);
+    
     var server = net.createServer(function (stream) {
         // todo: stream wrap the iface
-        var iface = createIface(server, stream);
+        var iface = createIface(server, stream, args);
         if (typeof iface.on === 'function') {
             iface.on('ref', function () { connected ++ });
             iface.on('unref', function () { connected -- });
