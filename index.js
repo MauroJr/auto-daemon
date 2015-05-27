@@ -1,6 +1,6 @@
 var net = require('net');
 var defined = require('defined');
-var RPC = require('rpc-stream');
+var RPC = require('multiplex-rpc');
 var fs = require('fs');
 var path = require('path');
 var once = require('once');

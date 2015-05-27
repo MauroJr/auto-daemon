@@ -1,5 +1,5 @@
 var net = require('net');
-var RPC = require('rpc-stream');
+var RPC = require('multiplex-rpc');
 
 module.exports = function (createIface, opts) {
     if (!opts) opts = {};
