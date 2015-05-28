@@ -101,6 +101,10 @@ client disconnects. If the object returned by the rpc interface is an event
 emitter, it can emit `'ref`' events to increment the refcount and `'unref'`
 events to decrement the refcount.
 
+The method format is the same as
+[multiplex-rpc](https://npmjs.com/package/multiplex-rpc): methods that end in
+`:s` are interpreted as stream methods.
+
 ## var server = createServer(createIface, opts)
 
 Use this method if you'd rather create the server yourself.
@@ -127,6 +131,9 @@ and should return the rpc methods in `iface` for that connection.
 * `server` is the daemon server instance
 * `stream` is the stream for the current session
 * `args` is an array of extra arguments provided by `opts.args`
+
+If the method is a stream method, it should return a stream. Otherwise methods
+can accept a callback as their last argument.
 
 # license
 
