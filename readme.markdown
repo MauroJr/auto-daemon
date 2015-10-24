@@ -77,6 +77,7 @@ $ node cmd.js add 5
 ``` js
 var autod = require('auto-daemon')
 var createServer = require('auto-daemon/server')
+var listen = require('auto-daemon/listen')
 ```
 
 ## autod(opts, cb)
@@ -114,6 +115,11 @@ Pass in the `createIface` function, which should be the same value as requiring
 an rpc file.
 
 `opts.autoclose` behaves the same as with `autod()`.
+
+## var server = listen(createIface, opts)
+
+Create and listen on a unix socket `opts.sockfile`.
+The process id is written to `opts.pidfile`.
 
 # rpc interface
 
