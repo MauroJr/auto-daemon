@@ -4,7 +4,7 @@ var RPC = require('multiplex-rpc');
 module.exports = function (createIface, opts) {
     if (!opts) opts = {};
     var connected = 0;
-    var args = opts._ && opts._.slice(1);
+    var args = opts.args || (opts._ && opts._.slice(1));
     
     var server = net.createServer(function (stream) {
         // todo: stream wrap the iface
