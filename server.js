@@ -33,14 +33,9 @@ module.exports = function (createIface, opts) {
                 setTimeout(function () {
                     if (connected !== 0) return
                     server.close();
-                    if (process._getActiveHandles().length > 0) {
-                        setTimeout(forceExit, 1000);
-                    }
                 }, 1000);
             }
         }
     });
     return server;
 };
-
-function forceExit () { process.exit(1) }
