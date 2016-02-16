@@ -33,6 +33,7 @@ module.exports = function (createIface, opts) {
                 setTimeout(function () {
                     if (connected !== 0) return
                     server.close();
+                    if (opts.exit) process.exit(0);
                 }, 1000);
             }
         }

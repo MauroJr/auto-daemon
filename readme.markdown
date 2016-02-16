@@ -97,6 +97,7 @@ the unix socket connection instance.
 * `opts.args` - an array of extra arguments to pass as the third argument to the
   interface. Must serialize as process arguments.
 * `opts.execPath` - a string path to spawn. Default: `process.execPath`
+* `opts.exit` - when autoclosing, call `process.exit()` to force a process exit
 
 The daemon refcount goes up by 1 for each connection and drops by 1 when a
 client disconnects. If the object returned by the rpc interface is an event

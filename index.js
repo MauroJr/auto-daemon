@@ -42,6 +42,7 @@ function daemon (opts, cb) {
         '--sockfile', opts.sockfile,
         '--autoclose', Boolean(opts.autoclose),
         '--parentpid', process.pid,
+        '--exit', Boolean(opts.exit),
         '--'
     ];
     if (opts.args) args.push.apply(args, opts.args);
