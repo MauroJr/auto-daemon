@@ -46,7 +46,7 @@ function daemon (opts, cb) {
     ];
     if (opts.args) args.push.apply(args, opts.args);
     
-    var ps = spawn(process.execPath, args, {
+    var ps = spawn(opts.execPath || process.execPath, args, {
         stdio: opts.debug ? undefined : 'ignore',
         detached: true
     });
