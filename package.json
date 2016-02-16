@@ -1,6 +1,6 @@
 {
   "name": "auto-daemon",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "automatically spawn implicit background services",
   "main": "index.js",
   "directories": {
