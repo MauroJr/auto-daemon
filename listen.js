@@ -23,7 +23,10 @@ module.exports = function (iface, opts) {
         }
     });
     server.once('listening', function () {
-        fs.writeFile(pidfile, String(process.pid))
+        fs.writeFile(pidfile, String(process.pid), function (err) {
+            if (err) server.emit('error', err)
+            else server.emit('ready')
+        })
     });
     server.listen(sockfile);
     return server;

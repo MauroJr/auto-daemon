@@ -123,6 +123,8 @@ an rpc file.
 Create and listen on a unix socket `opts.sockfile`.
 The process id is written to `opts.pidfile`.
 
+The server emits a `ready` event when the pidfile has been written.
+
 # rpc interface
 
 The rpc file should export a function that returns an object.
