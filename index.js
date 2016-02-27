@@ -26,10 +26,11 @@ module.exports = function (opts, cb) {
     }
     function connectAndDaemonize (cb) {
         fs.unlink(opts.sockfile, function () {
-            daemon(opts, function (err) {
-                if (err) cb(err)
+            var ps = daemon(opts, function (err) {
+                if (err) return cb(err)
                 else connect(opts.sockfile, opts.methods, cb)
             });
+            emitter.emit('process', ps)
         });
     }
 };
@@ -65,6 +66,7 @@ function daemon (opts, cb) {
         ps.unref();
         cb()
     });
+    return ps;
 }
 
 function connect (sockfile, methods, cb_) {

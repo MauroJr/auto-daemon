@@ -80,7 +80,7 @@ var createServer = require('auto-daemon/server')
 var listen = require('auto-daemon/listen')
 ```
 
-## autod(opts, cb)
+## var d = autod(opts, cb)
 
 Connect to a daemon instance, spawning the daemon first if it isn't already
 running.
@@ -109,6 +109,10 @@ events to decrement the refcount.
 The method format is the same as
 [multiplex-rpc](https://npmjs.com/package/multiplex-rpc): methods that end in
 `:s` are interpreted as stream methods.
+
+## d.on('process', ps)
+
+Get a handle to spawned processes.
 
 ## var server = createServer(createIface, opts)
 
