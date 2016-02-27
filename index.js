@@ -49,7 +49,9 @@ function daemon (opts, cb) {
     
     var ps = spawn(opts.execPath || process.execPath, args, {
         stdio: opts.debug ? undefined : 'ignore',
-        detached: true
+        detached: true,
+        cwd: opts.cwd,
+        env: opts.env || process.env
     });
     if (opts.debug) {
         ps.stdout.pipe(process.stdout);
